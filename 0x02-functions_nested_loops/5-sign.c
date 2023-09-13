@@ -1,7 +1,7 @@
 #include "main.h"
 
 /**
- * print-sign - checks and print the sign
+ * print_sign - checks and print the sign
  * @n: the number to be cheked
  *
  * Return: 1, 0, 1 for negative, zero and postive respectively
