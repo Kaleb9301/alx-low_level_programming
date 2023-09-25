@@ -1,8 +1,8 @@
 #include "main.h"
 
 /**
- * print_chessboarrd - printst the cheesboard
- * @: the whole array
+ * print_chessboard - printst the cheesboard
+ * @a: the whole array
  */
 void print_chessboard(char (*a)[8])
 {
@@ -15,5 +15,5 @@ void print_chessboard(char (*a)[8])
 			_putchar(a[i][j]);
 		}
 		_putchar('\n');
-	}	
+	}
 }
