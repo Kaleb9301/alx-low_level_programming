@@ -4,7 +4,7 @@
 /**
  * print_diagsums - sums the diagonal
  * @a: the array
- * size: size of the array
+ *@size: size of the array
  */
 void print_diagsums(int *a, int size)
 {
@@ -13,11 +13,11 @@ void print_diagsums(int *a, int size)
 	for (i = 0; i < size; i++)
 	{
 		pos = (i * size) + i;
-		left += *( a + pos);
+		left += *(a + pos);
 	}
-	for(j = 0; j < size; j++)
+	for (j = 0; j < size; j++)
 	{
-		pos = (j * size) + ( size - 1 - j);
+		pos = (j * size) + (size - 1 - j);
 		right += *(a + pos);
 
 	}
