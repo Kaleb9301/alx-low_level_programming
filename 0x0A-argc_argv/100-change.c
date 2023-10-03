@@ -19,6 +19,11 @@ int main(int argc, char *argv[])
 	}
 	coins = 0;
 	value = atoi(argv[1]);
+	if (value < 0)
+	{
+		printf("%d\n", 0);
+		return (0);
+	}
 	for (i = 0; i < 5; i++)
 	{
 		coins += value / cents[i];
