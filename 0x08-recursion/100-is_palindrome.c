@@ -6,9 +6,9 @@
  */
 int _strlen(char *s)
 {
-	if(s[0] != '\0')
-		return (1 + _strlen(s +1));
-	return(0);
+	if (s[0] != '\0')
+		return (1 + _strlen(s + 1));
+	return (0);
 }
 /**
  * pal_check - check the string is palindrome
@@ -21,7 +21,7 @@ int pal_check(char *s, int i, int j)
 {
 	if (s[i] == s[j])
 	{
-		if ( i < j)
+		if (i < j)
 			return (pal_check(s, i + 1, j - 1));
 		else
 			return (1);
