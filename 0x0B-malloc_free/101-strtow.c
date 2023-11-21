@@ -3,96 +3,92 @@
 #include <stddef.h>
 #include <stdio.h>
 
-/**
- * alloc - allocate memory space fot the word
- * @str: the sring
- * @len: lenth of the string
- * @size: size of the array
- */
-char **alloc(char *str, int len, int size)
-{
-	int i, j, width;
-	char **word, before;
-
-	word = malloc((size + 1) * sizeof(char *));
-	before = ' ';
-
-	for (i = 0; i < size; i++)
-	{
-		while (j < len)
-		{
-			if (str[j] == ' ' && before != ' ')
-			{
-				before = ' ';
-				j++;
-				break;
-			}
-			if (str[j] != ' ')
-				width++;
-			before = str[j];
-			j++;
-		}
-		word[i] = malloc((width + 1) * sizeof(char));
-		if (word[i] == NULL)
-		{
-			return (NULL);
-		}
-		width = 0;
-	}
-	word[size] = NULL;
-	return (word);
-}
+void fetch(char **, char *);
+void split_word(char **, char *, int, int, int);
 
 /**
- * strtow -spilit the string int mulitple words
+ * strtow - spilit the string int mulitple words
  * @str : pointer
- * Reutrn: poineter
+ * Return: poineter
  */
 char **strtow(char *str)
 {
-	char **word, before;
-	int i, j, k, c, size, len;
+	int i, flag, len;
+	char **words;
 
-	j = 0;
-	k = 0;
-	c = 0;
-	size = 0;
-	before = ' ';
-	if (str == NULL)
+	if (str == NULL || str[0] == '\0' || (str[0] == ' ' && str[1] == '\0'))
 		return (NULL);
-	len = 0;
-	for (i = 0; str[i] != '\0'; i++)
+
+	i = flag = len = 0;
+	while (str[i])
 	{
-		if (str[i] != ' ')
-			c = 1;
-		if (str[i] != ' ' && before == ' ')
-			size++;
-		before = str[i];
-		len++;
-	}
-	word = alloc(str, len, size);
-	if (word == NULL || c == 0)
-		return (NULL);
-	before = ' ';
-	for (i = 0; str[i] != '\0'; i++)
-	{
-		while (j < len)
+		if (flag == 0 && str[i] != ' ')
+			flag = 1;
+		if (i > 0 && str[i] == ' ' && str[i - 1] != ' ')
 		{
-			if (str[i] != ' ' && before != ' ')
-			{
-				*word[j] = str[i];
-				j++;
-			}
-			if (str[j] != ' ')
-			{
-				word[i][k] = str[j];
-				k++;
-			}
-			before = str[j];
-			j++;
+			flag = 0;
+			len++;
 		}
-		word[i][k] = '\0';
-		k = 0;
+		i++;
 	}
-	return (word);
+
+	len += flag == 1 ? 1 : 0;
+	if (len == 0)
+		return (NULL);
+	words = (char **)malloc(sizeof(char *) * (len + 1));
+	if (words == NULL)
+		return (NULL);
+	fetch(words, str);
+	words[len] = NULL;
+	return (words);
+}
+
+/**
+ * fetch - a fetch function for fetcing the splited word to the an array
+ * @words: the strings array
+ * @str: the string
+ */
+void fetch(char **words, char *str)
+{
+	int i, j, start, flag;
+
+	i = j = flag = 0;
+	while (str[i])
+	{
+		if (flag == 0 && str[i] != ' ')
+		{
+			start = i;
+			flag = 1;
+		}
+
+		if (i > 0 && str[i] == ' ' && str[i - 1] != ' ')
+		{
+			split_word(words, str, start, i, j);
+			j++;
+			flag = 0;
+		}
+		i++;
+	}
+
+	if (flag == 1)
+		split_word(words, str, start, i, j);
+}
+/**
+ * split_word - split a word and insert insert it into the array
+ * @words: the array of string s
+ * @str: the string
+ * @start: the starting index of the word
+ * @end: the stopping index of the word
+ * @index: the index of the array to insdert the word
+ */
+void split_word(char **words, char *str, int start, int end, int index)
+{
+	int i, j;
+
+	i = end - start;
+	words[index] = (char *)malloc(sizeof(char) * (i + 1));
+
+	for (j = 0; start < end; start++, j++)
+		words[index][j] = str[start];
+	words[index][j] = '\0';
 }
