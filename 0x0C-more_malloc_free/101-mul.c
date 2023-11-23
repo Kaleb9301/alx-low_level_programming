@@ -37,7 +37,7 @@ int _strlen(char *s)
 	return (i);
 }
 /**
- * erros - handels erros for main
+ * errors - handels erros for main
  */
 void errors(void)
 {
