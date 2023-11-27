@@ -4,7 +4,7 @@
 
 /**
  * free_dog - free up the memory lcoation
- * @d - the pointer to the struct
+ * @d: the pointer to the struct
  *
  */
 void free_dog(dog_t *d)
