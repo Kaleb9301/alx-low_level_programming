@@ -27,6 +27,10 @@ void print_all(const char * const format, ...)
 				printf("%i", va_arg(a_list, int));
 				flag = 0;
 				break;
+			case 'f':
+				printf("%f", va_arg(a_list, double));
+				flag = 0;
+				break;
 			case 's':
 				str = va_arg(a_list, char*);
 				if (str == NULL)
