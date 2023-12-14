@@ -8,7 +8,7 @@
  *
  * Return: unsigne integr
  */
-unsigned int binary_to_uin`t(const char *b)
+unsigned int binary_to_uint(const char *b)
 {
 	int i;
 	unsigned int j = 0;
