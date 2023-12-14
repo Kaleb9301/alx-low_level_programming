@@ -2,7 +2,7 @@
 #include <stddef.h>
 
 /**
- * binary_to_unit - convert binary to int
+ * binary_to_uint - convert binary to int
  *
  * @b: binary numbers in char data type
  *
