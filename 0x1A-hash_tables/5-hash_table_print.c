@@ -12,25 +12,26 @@ void hash_table_print(const hash_table_t *ht)
 
 	if (ht == NULL)
 		return;
-	 i = 0;
-	 printf("{");
-	 while (i < ht->size)
-	 {
-		 while(ht->array[i])
-		 {
-			 while (temp)
-			 {
-			 	if (comma)
-					 printf(", ");
-			 	printf("'%s': '%s'", temp->key, temp->value);
-			 	temp = temp->next;
+	i = 0;
+	printf("{");
+	while (i < ht->size)
+	{
+		while (ht->array[i])
+		{
+			temp = ht->array[i];
+			while (temp)
+			{
+				if (comma)
+					printf(", ");
+				printf("'%s': '%s'", temp->key, temp->value);
+				temp = temp->next;
 			 	comma = 1;
 			}
-			 break;
-		 }
-		 i++;
-	 }
-	 printf("}\n");
+			break;
+		}
+		i++;
+	}
+	printf("}\n");
 
 
 }
