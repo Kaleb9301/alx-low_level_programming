@@ -1,35 +1,30 @@
 #include "main.h"
 
 /**
- * rot13 - Encode and decode the string
- * @s: the setring to be ciphered or dciphered
- * Return: the ciphered text
+ * rot13 - encodes a string in rot13
+ * @s: string to be encoded
+ *
+ * Return: the resulting string
  */
+
 char *rot13(char *s)
 {
-	int i;
+	int i, j;
 
-	i = 0;
-	while (*(s + i))
+	char a[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+	char b[] = "NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm";
+
+	for (i = 0; s[i] != '\0'; i++)
 	{
-		if (s[i] < 'n' && s[i] >= 'a')
+		for (j = 0; a[j] != '\0'; j++)
 		{
-			s[i] += 'n' - 'a';
+			if (s[i] == a[j])
+			{
+				s[i] = b[j];
+				break;
+			}
 		}
-		else if (s[i] >= 'n' && s[i] < 'z')
-		{
-			s[i] -= 'n' - 'a';
-		}
-		else if (s[i] < 'N' && s[i] >= 'A')
-		{
-			s[i] += 'N' - 'A';
-		}
-		else if (s[i] >= 'N' && s[i] <= 'Z')
-		{
-			s[i] -= 'N' - 'A';
-		}
-
-		i++;
 	}
+
 	return (s);
 }
